@@ -1,39 +1,34 @@
 import { NgModule } from '@angular/core';
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 
+// Components ______________________________________
 import { AppComponent } from './app.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
-// Firestore modules ______________________________________
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+// Firebase import ______________________________________
+import { FirebaseModule } from './modules/firebase.module';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAKO8LuJ1BHNKXyl7SjJa_a9uX1o6MoEEs",
-  authDomain: "angulargroceries.firebaseapp.com",
-  projectId: "angulargroceries",
-  storageBucket: "angulargroceries.appspot.com",
-  messagingSenderId: "1074478989562",
-  appId: "1:1074478989562:web:7b3adf0abe204d37b54943"
-};
+// Material materials import ______________________________________
+import { MaterialModule } from './modules/material.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DashboardComponent,
+    SignInComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-
-    // Firestore modules ______________________________________
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFirestoreModule, // firestore
-    AngularFireAuthModule, // auth
-    AngularFireStorageModule // storage
+    FirebaseModule,
+    MaterialModule
   ],
-  providers: [],
+  providers: [{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

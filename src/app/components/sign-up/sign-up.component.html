@@ -1,0 +1,25 @@
+<div class="container">
+  <mat-card>
+    <mat-card-title>
+      <mat-icon color="primary">bookmark</mat-icon>
+      Register new account
+    </mat-card-title>
+
+    <form class="signin-form">
+      <mat-form-field class="signin-form__full-width" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput placeholder="Ex. user@gmail.com" formControlName="email">
+      </mat-form-field>
+
+      <mat-form-field class="signin-form__full-width" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput formControlName="password">
+      </mat-form-field>
+    </form>
+
+    <div class="signin-form__btns">
+      <button mat-raised-button routerLink="/sign-in">Sign up</button>
+    </div>
+
+  </mat-card>
+</div>
