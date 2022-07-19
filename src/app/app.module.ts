@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Components ______________________________________
 import { AppComponent } from './app.component';
@@ -26,9 +26,10 @@ import { MaterialModule } from './modules/material.module';
     BrowserModule,
     AppRoutingModule,
     FirebaseModule,
-    MaterialModule
+    MaterialModule,
+    BrowserAnimationsModule
   ],
-  providers: [{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

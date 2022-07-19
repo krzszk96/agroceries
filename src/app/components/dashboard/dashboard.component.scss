@@ -1,0 +1,19 @@
+mat-toolbar{
+  display: flex;
+  justify-content: end;
+}
+.user-email{
+  margin: 0 10px;
+}
+
+.acc-icon{
+  transform: scale(1.2);
+}
+
+.logout-btn{
+  margin-left: 50px;
+}
+
+mat-card{
+  margin: 20px;
+}

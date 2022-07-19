@@ -1,1 +1,11 @@
-<p>dashboard works!</p>
+<mat-toolbar color="primary" *ngIf="authService.userData as user">
+  <mat-icon class="acc-icon">account_circle</mat-icon>
+  <div class="user-email">{{user.email}}</div>
+  <button class="logout-btn" mat-raised-button (click)="authService.signOut()">Log out</button>
+</mat-toolbar>
+
+<mat-card>
+  <mat-card-title>Grocery List</mat-card-title>
+  <mat-card-subtitle>Subtitle</mat-card-subtitle>
+  <mat-card-content>list</mat-card-content>
+</mat-card>
