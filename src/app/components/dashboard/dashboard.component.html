@@ -1,11 +1,14 @@
-<mat-toolbar color="primary" *ngIf="authService.userData as user">
-  <mat-icon class="acc-icon">account_circle</mat-icon>
-  <div class="user-email">{{user.email}}</div>
-  <button class="logout-btn" mat-raised-button (click)="authService.signOut()">Log out</button>
+<mat-toolbar class="top-nav">
+  <a routerLink="list">
+    <div class="top-nav__item" [ngClass]="{ 'top-nav__active' : isValue == 1 }" (click)="toggle(1)">List
+    </div>
+  </a>
+  <a routerLink="recipes">
+    <div class="top-nav__item" [ngClass]="{ 'top-nav__active' : isValue == 2 }" (click)="toggle(2)">Recipes</div>
+  </a>
+  <a routerLink="drafts">
+    <div class="top-nav__item" [ngClass]="{ 'top-nav__active' : isValue == 3 }" (click)="toggle(3)">Drafts</div>
+  </a>
 </mat-toolbar>
 
-<mat-card>
-  <mat-card-title>Grocery List</mat-card-title>
-  <mat-card-subtitle>Subtitle</mat-card-subtitle>
-  <mat-card-content>list</mat-card-content>
-</mat-card>
+<router-outlet></router-outlet>

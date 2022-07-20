@@ -7,13 +7,10 @@ import { DataService } from 'src/app/services/data.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
 
-  currentemail?: string | null ;
+  isValue: number = 1;
 
-  constructor(public authService: AuthService) { }
-
-  ngOnInit(): void {
-  }
+  toggle(num:number) { this.isValue = num; }
 
 }

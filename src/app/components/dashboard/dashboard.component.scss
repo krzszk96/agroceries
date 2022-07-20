@@ -1,19 +1,30 @@
-mat-toolbar{
+@import '../../scss/colors';
+
+.top-nav{
   display: flex;
-  justify-content: end;
+  justify-content: space-around;
+  background-color: $accent-color;
+  font-weight: 400;  
 }
-.user-email{
-  margin: 0 10px;
+.top-nav a{
+  text-decoration: none;
+  color: $text-color;
 }
+.top-nav__item{
+  position: relative;
+}
+.top-nav__active{
 
-.acc-icon{
-  transform: scale(1.2);
-}
-
-.logout-btn{
-  margin-left: 50px;
-}
-
-mat-card{
-  margin: 20px;
+  &::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 6px;
+    border-radius: 15px;
+    background-color: $primary-color;
+  }
 }

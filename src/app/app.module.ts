@@ -14,13 +14,19 @@ import { FirebaseModule } from './modules/firebase.module';
 
 // Material materials import ______________________________________
 import { MaterialModule } from './modules/material.module';
+import { RecipesComponent } from './components/recipes/recipes.component';
+import { DraftsComponent } from './components/drafts/drafts.component';
+import { ListComponent } from './components/list/list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    RecipesComponent,
+    DraftsComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,
