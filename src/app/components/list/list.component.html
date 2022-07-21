@@ -1,5 +1,40 @@
-<mat-card>
-  <mat-card-title>Grocery List</mat-card-title>
-  <mat-card-subtitle>Subtitle</mat-card-subtitle>
-  <mat-card-content>list</mat-card-content>
+<div class="input-wrap">
+  <div class="input-helper">
+    <input type="text" name="taskinput" id="taskinput" class="task-input" placeholder="add new item..." #taskinput
+      required>
+  </div>
+  <mat-icon class="task-input__icon" (click)="addItem(taskinput.value)">add</mat-icon>
+</div>
+
+<div class="list-actions">
+  <button class="list-actions__save">Save as draft</button>
+  <button class="list-actions__load">Load as draft</button>
+</div>
+
+<mat-card class="card-list">
+  <div class="card-list__title">Shopping list name</div>
+  <div class="card-list__progress-text">cart 1/6</div>
+  <div class="progress">
+    <div class="progress__back"></div>
+    <div class="progress__front"></div>
+  </div>
+  <div class="card-list-wrap">
+    <ul class="list">
+      <li class="list__item">
+        <mat-checkbox color="primary">
+          milk
+        </mat-checkbox>
+      </li>
+      <li class="list__item">
+        <mat-checkbox color="primary">
+          sugar
+        </mat-checkbox>
+      </li>
+      <li class="list__item">
+        <mat-checkbox color="primary">
+          oranges
+        </mat-checkbox>
+      </li>
+    </ul>
+  </div>
 </mat-card>

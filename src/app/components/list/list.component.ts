@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { List } from 'src/app/interfaces/list';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-list',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('taskinput') input: any;
+  taskinput: string = '';
+  itemlist: List[] = [];
+
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
+    this.dataService.getItems();
+    console.log(this.dataService.getItems());
+    
+  }
+
+  addItem(item: string){
+    this.dataService.addItem(item);
+    this.input.nativeElement.value = '';
   }
 
 }

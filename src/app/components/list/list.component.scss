@@ -1,3 +1,114 @@
-mat-card{
-  margin: 20px;
+@import '../../scss/colors';
+
+.input-wrap{
+  position: relative;
+}
+.input-helper{
+  margin: 2.5rem 1.5rem;  
+}
+.task-input{
+  width: calc(100% - 1.5rem - 20px);   
+  padding: 15px 20px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 0px 2px 0px rgba(183, 183, 183, 1); //later change to correct one and everywhere same
+  background-color: $secondary-color;
+  font-size: 1.1rem;
+  font-weight: 400;
+
+  &__icon{
+    position: absolute;
+    top: 50%;
+    right: 2.5rem;
+    transform: translateY(-50%);
+    
+  }
+
+  &::placeholder{
+    font-size: 1.1rem;
+    font-weight: 400;
+  }
+
+  &:focus,&:active{
+    outline: none;
+  }
+}
+
+.list-actions{
+  display: flex;
+  justify-content: space-between;
+  margin: 0.8rem 1.5rem;
+
+  &__save, &__load{
+    border: none;
+    border-radius: 5px;
+    padding: 5px 20px;
+    font-weight: 600;
+    color: $primary-color;
+    background-color: $secondary-color;
+    letter-spacing: 1px;
+    box-shadow: 0px 0px 2px 0px rgba(183, 183, 183, 1); //later change to correct one and everywhere same
+    font-family: Roboto;
+  }
+}
+
+.card-list{
+  margin: 0 1.5rem 2.5rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 0px 2px 0px rgba(183, 183, 183, 1) !important; //later change to correct one and everywhere same
+  color: $text-color;
+
+  &__title{
+    position: relative;
+    font-size: 1.1rem;
+    margin-left: 15px;
+  }
+  &__title::before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -15px;
+    transform: translateY(-50%);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: $primary-color;
+  }
+  &__progress-text{
+    font-size: 0.7rem;
+    color: $primary-color;
+  }
+
+  .progress{
+    position: relative;
+    height: 10px;
+    width: 90%;
+
+    &__back{
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 100%;
+      background-color: rgb($primary-color, 0.3);
+    }
+    &__front{
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 10%;
+      background-color: $primary-color ;
+    }
+  }
+
+  .list{
+    list-style: none;
+    padding: 0;
+
+    &__item{
+      font-size: 1rem;
+    }
+  }
 }

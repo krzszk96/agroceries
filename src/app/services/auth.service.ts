@@ -39,7 +39,7 @@ export class AuthService {
   signIn(email: string, password: string){
     return this.frauth.signInWithEmailAndPassword(email, password)
       .then(() => {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/dashboard/list']);
       })
       .catch((error) => { window.alert(error.message); });
   }

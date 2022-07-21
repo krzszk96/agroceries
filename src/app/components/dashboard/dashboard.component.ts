@@ -11,6 +11,8 @@ export class DashboardComponent {
 
   isValue: number = 1;
 
+  constructor(public authService: AuthService){}
+
   toggle(num:number) { this.isValue = num; }
 
 }

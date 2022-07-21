@@ -1,18 +1,27 @@
 @import '../../scss/colors';
 
+:host{
+  position: relative;
+  display: block;
+  height: 100%;
+}
+
 .top-nav{
   display: flex;
   justify-content: space-around;
   background-color: $accent-color;
   font-weight: 400;  
 }
+
 .top-nav a{
   text-decoration: none;
   color: $text-color;
 }
+
 .top-nav__item{
   position: relative;
 }
+
 .top-nav__active{
 
   &::before{
@@ -26,5 +35,25 @@
     height: 6px;
     border-radius: 15px;
     background-color: $primary-color;
+  }
+}
+
+.bottom-nav{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 5rem;
+  background-color: $secondary-color;
+  border-radius: 25px 25px 0px 0px; 
+  box-shadow: 0px 0px 2px 0px rgba(183, 183, 183, 1); //later change to correct one and everywhere same
+
+  &__logout{
+    background-color: transparent;
+    border: none;
+    color: $primary-color;
+    transform: scale(1.3);
   }
 }
