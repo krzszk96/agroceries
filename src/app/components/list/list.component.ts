@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { List } from 'src/app/interfaces/list';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -11,7 +10,6 @@ export class ListComponent implements OnInit {
 
   @ViewChild('taskinput') input: any;
   taskinput: string = '';
-  itemlist: List[] = [];
 
   constructor(private dataService: DataService) { }
 
