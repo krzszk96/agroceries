@@ -20,19 +20,9 @@
   </div>
   <div class="card-list-wrap">
     <ul class="list">
-      <li class="list__item">
+      <li class="list__item" *ngFor="let item of todos">
         <mat-checkbox color="primary">
-          milk
-        </mat-checkbox>
-      </li>
-      <li class="list__item">
-        <mat-checkbox color="primary">
-          sugar
-        </mat-checkbox>
-      </li>
-      <li class="list__item">
-        <mat-checkbox color="primary">
-          oranges
+          {{item}}
         </mat-checkbox>
       </li>
     </ul>

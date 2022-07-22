@@ -1,4 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
+import { Observable } from 'rxjs';
+import { Item } from 'src/app/interfaces/item';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -10,14 +13,20 @@ export class ListComponent implements OnInit {
 
   @ViewChild('taskinput') input: any;
   taskinput: string = '';
+  todos: any;
+  user: any;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private db: AngularFireDatabase) {
+  }
 
   ngOnInit(): void {
-    this.dataService.getItems();
-    console.log(this.dataService.getItems());
-    
+    this.user = JSON.parse(localStorage.getItem('user')!);
+    this.db.list(`/users/${this.user.uid}/items`).valueChanges().subscribe(todos => {
+      this.todos = todos;
+      console.log(this.todos);
+    });
   }
+
 
   addItem(item: string){
     this.dataService.addItem(item);
