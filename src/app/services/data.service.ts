@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
-import { Observable } from 'rxjs';
-import { Item } from '../interfaces/item';
+import { AngularFireDatabase, AngularFireObject } from '@angular/fire/compat/database';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +13,7 @@ export class DataService {
   }
   
   getAllItems() {
-    return this.db.list(`/users/${this.user.uid}/items`);
+    return this.db.object(`/users/${this.user.uid}/items`);
   }
 
   addItem(item: any){    

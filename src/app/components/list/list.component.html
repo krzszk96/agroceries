@@ -20,9 +20,9 @@
   </div>
   <div class="card-list-wrap">
     <ul class="list">
-      <li class="list__item" *ngFor="let item of todos">
-        <mat-checkbox color="primary">
-          {{item}}
+      <li class="list__item" *ngFor="let item of items | keyvalue">
+        <mat-checkbox color="primary" (click)="saveDoneItem(item.key)">
+          {{item.value}}
         </mat-checkbox>
       </li>
     </ul>
