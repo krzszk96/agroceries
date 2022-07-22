@@ -9,8 +9,11 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SignInComponent {
 
-  constructor(public authService: AuthService){
-    
+
+  constructor(public authService: AuthService){}
+
+  signIn(email:string, password:string):void {
+    this.authService.signIn(email, password);
   }
 
 }
