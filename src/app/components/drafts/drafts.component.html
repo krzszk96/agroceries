@@ -1,1 +1,16 @@
-<p>drafts works!</p>
+<mat-card class="card-list" *ngFor="let draft of drafts">
+  <div class="card-list__title">{{draft.key}}</div>
+
+  <div class="card-list-wrap">
+    <ul class="list">
+      <li class="list__item" *ngFor="let item of draft | keyvalue">
+        {{item | json}}
+      </li>
+    </ul>
+  </div>
+
+  <div class="draft-actions">
+    <button class="draft-actions__load">Load draft</button>
+    <button class="draft-actions__add">Add to current list</button>
+  </div>
+</mat-card>

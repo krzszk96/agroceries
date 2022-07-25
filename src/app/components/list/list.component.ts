@@ -17,6 +17,7 @@ export class ListComponent implements OnInit {
   @ViewChild('taskinput') input: any;
   items: any;
   item: Item ={};
+  listtitle: string = 'shopping list name';
 
   itemscount: number = 0;
   itemsticked: number = 0;
@@ -69,6 +70,12 @@ export class ListComponent implements OnInit {
       if(item.done == true) {this.itemsticked++;} 
     } 
     this.progresswidth = Math.round((this.itemsticked / this.itemscount) * 100);        
+  }
+
+  saveDraft(){
+    console.log(this.items);
+    
+    this.dataService.saveDraft(this.listtitle, this.items);
   }
 }
 

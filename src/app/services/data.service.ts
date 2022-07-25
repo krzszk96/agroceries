@@ -12,7 +12,7 @@ export class DataService {
   useruid: any;
 
   constructor(private db: AngularFireDatabase, private frauth: AngularFireAuth) {
-    // TODO fix null on component load
+    
     this.frauth.onAuthStateChanged((user:any) => {
       if(user){
         this.useruid = user.uid;          
@@ -34,6 +34,10 @@ export class DataService {
 
   updateItem(id:string){
     return this.db.list(`/users/${this.useruid}/items`);
+  }
+
+  saveDraft(key:string, items: Item[] ){
+    return this.db.object(`/users/${this.useruid}/drafts/${key}`).update(items);
   }
 
 }

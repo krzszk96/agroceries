@@ -7,12 +7,12 @@
 </div>
 
 <div class="list-actions">
-  <button class="list-actions__save">Save as draft</button>
+  <button class="list-actions__save" (click)="saveDraft()">Save as draft</button>
   <button class="list-actions__load">Load as draft</button>
 </div>
 
 <mat-card class="card-list">
-  <div class="card-list__title">Shopping list name</div>
+  <div class="card-list__title" contenteditable="true" #x (input)="listtitle = x.innerText">{{listtitle}}</div>
   <div class="card-list__progress-text">cart {{itemsticked}}/{{itemscount}}</div>
   <div class="progress">
     <div class="progress__back"></div>
