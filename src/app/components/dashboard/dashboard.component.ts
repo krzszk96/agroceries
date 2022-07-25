@@ -15,4 +15,8 @@ export class DashboardComponent {
 
   toggle(num:number) { this.isValue = num; }
 
+  signOut(){
+    this.authService.signOut();
+  }
+
 }
