@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Item } from 'src/app/interfaces/item';
 import { DataService } from 'src/app/services/data.service';
 import { map } from 'rxjs/operators';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-list',
@@ -15,18 +16,20 @@ export class ListComponent implements OnInit {
 
   @ViewChild('taskinput') input: any;
   items: any;
-  user: any;
   item: Item ={};
 
   itemscount: number = 0;
   itemsticked: number = 0;
   progresswidth: number = 0;
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private frauth: AngularFireAuth) {}
 
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem('user')!);
-    this.retrieveItems();
+    this.frauth.onAuthStateChanged((user:any) => {
+      if(user){
+        this.retrieveItems();
+      }    
+    });      
   }
 
   retrieveItems(): void {
@@ -37,7 +40,7 @@ export class ListComponent implements OnInit {
         )
       )
     ).subscribe(items => {
-      this.items = items;
+      this.items = items;      
       this.itemscount = this.items.length;   
       this.checkHowManyItemsTicked(this.items);      
     });
