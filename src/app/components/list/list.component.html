@@ -13,16 +13,16 @@
 
 <mat-card class="card-list">
   <div class="card-list__title">Shopping list name</div>
-  <div class="card-list__progress-text">cart 1/6</div>
+  <div class="card-list__progress-text">cart {{itemsticked}}/{{itemscount}}</div>
   <div class="progress">
     <div class="progress__back"></div>
-    <div class="progress__front"></div>
+    <div class="progress__front" [style.width.%]="progresswidth"></div>
   </div>
   <div class="card-list-wrap">
     <ul class="list">
-      <li class="list__item" *ngFor="let item of items | keyvalue">
-        <mat-checkbox color="primary" (click)="saveDoneItem(item.key)">
-          {{item.value}}
+      <li class="list__item" *ngFor="let item of items ">
+        <mat-checkbox color="primary" (click)="tickItem(item.key)" [checked]="item.done">
+          {{item.name}}
         </mat-checkbox>
       </li>
     </ul>

@@ -17,35 +17,55 @@ export class ListComponent implements OnInit {
   items: any;
   user: any;
   item: Item ={};
-  itemsRef!: AngularFireList<any>;
+
+  itemscount: number = 0;
+  itemsticked: number = 0;
+  progresswidth: number = 0;
 
   constructor(private dataService: DataService) {}
 
-  // TODO change item display to handle object with paramenters
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user')!);
-    this.dataService.getAllItems().valueChanges().subscribe(
-      itemobj => {
-      this.items =  itemobj;
-      console.log(this.items);
+    this.retrieveItems();
+  }
+
+  retrieveItems(): void {
+    this.dataService.getAllItems().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(items => {
+      this.items = items;
+      this.itemscount = this.items.length;   
+      this.checkHowManyItemsTicked(this.items);      
     });
   }
   
   addItem(item: string){
-    this.item = {
-      name: item,
-      done: false
-    }
-    this.dataService.addItem(this.item);
+    this.dataService.addItem({name: item, done: false});
     this.input.nativeElement.value = '';
   }
 
   deleteItem(id:any){
-    console.log(id);    
+    console.log("Not yet implemeneted, clicked id: " +id);    
   }
 
-  saveDoneItem(id:any){
-    console.log(id);    
+  tickItem(id:any){
+    let donestate = false;
+    for (let item of this.items){
+      if(item.key == id) {donestate = item.done;} 
+    }        
+    this.dataService.updateItem(id).update(id, {done: !donestate});
   }
 
+  checkHowManyItemsTicked(items: Item[]){
+    this.itemsticked = 0;
+    for (let item of items){      
+      if(item.done == true) {this.itemsticked++;} 
+    } 
+    this.progresswidth = Math.round((this.itemsticked / this.itemscount) * 100);        
+  }
 }
+
