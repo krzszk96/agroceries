@@ -8,7 +8,7 @@
 
 <div class="list-actions">
   <button class="list-actions__save" (click)="saveDraft()">Save as draft</button>
-  <button class="list-actions__load">Load as draft</button>
+  <button class="list-actions__load" routerLink="../drafts" (click)="updateMenu(3)">Load draft</button>
 </div>
 
 <mat-card class="card-list">

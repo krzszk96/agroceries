@@ -5,6 +5,7 @@ import { Item } from 'src/app/interfaces/item';
 import { DataService } from 'src/app/services/data.service';
 import { map } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-list',
@@ -24,7 +25,10 @@ export class ListComponent implements OnInit {
   itemsticked: number = 0;
   progresswidth: number = 0;
 
-  constructor(private dataService: DataService, private frauth: AngularFireAuth) {}
+  constructor(
+    private dataService: DataService, 
+    private frauth: AngularFireAuth,
+    private _snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.frauth.onAuthStateChanged((user:any) => {
@@ -76,8 +80,15 @@ export class ListComponent implements OnInit {
   saveDraft(){
     this.items.map( (item:any) => {
       this.draftItems.push(item.name) ;
-    })    
+    })        
     this.dataService.saveDraft(this.listtitle, this.draftItems);
+    this._snackBar.open('Draft saved', '', {
+      duration: 2000
+    });
+  }
+
+  updateMenu(nr: number){
+    localStorage.setItem('menupos', String(nr));
   }
 }
 

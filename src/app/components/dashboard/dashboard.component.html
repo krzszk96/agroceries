@@ -1,13 +1,13 @@
 <mat-toolbar class="top-nav">
   <a routerLink="list">
-    <div class="top-nav__item" [ngClass]="{ 'top-nav__active' : isValue == 1 }" (click)="toggle(1)">List
+    <div class="top-nav__item" routerLinkActive="top-nav__active">List
     </div>
   </a>
   <a routerLink="recipes">
-    <div class="top-nav__item" [ngClass]="{ 'top-nav__active' : isValue == 2 }" (click)="toggle(2)">Recipes</div>
+    <div class="top-nav__item" routerLinkActive="top-nav__active">Recipes</div>
   </a>
   <a routerLink="drafts">
-    <div class="top-nav__item" [ngClass]="{ 'top-nav__active' : isValue == 3 }" (click)="toggle(3)">Drafts</div>
+    <div class="top-nav__item" routerLinkActive="top-nav__active">Drafts</div>
   </a>
 </mat-toolbar>
 
