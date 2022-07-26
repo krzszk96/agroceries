@@ -62,6 +62,9 @@ export class ListComponent implements OnInit {
 
   deleteItem(id:any){
     this.dataService.deleteItem(id);
+    this._snackBar.open('Item removed', '', {
+      duration: 1000
+    });
   }
 
   tickItem(id:any){    
@@ -87,7 +90,7 @@ export class ListComponent implements OnInit {
     })        
     this.dataService.saveDraft(this.listtitle, this.draftItems);
     this._snackBar.open('Draft saved', '', {
-      duration: 2000
+      duration: 1000
     });
     this.draftItems = [];
   }
