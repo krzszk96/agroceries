@@ -1,5 +1,12 @@
 @import '../../scss/colors';
 
+:host{
+  display:block;
+  margin-bottom: 100px;
+}
+mat-panel-description{
+  align-items: flex-start;
+}
 .card-list{
   margin: 1rem 1.5rem 0 1.5rem;
   border: none;

@@ -15,6 +15,8 @@ export class DraftsComponent implements OnInit {
   item: Item ={};
   drafts: any;
 
+  test: any;
+
   constructor(private frauth: AngularFireAuth, private draftsService: DraftsService) { }
 
   ngOnInit(): void {
@@ -23,6 +25,10 @@ export class DraftsComponent implements OnInit {
         this.retrieveDrafts();
       }    
     }); 
+  }
+
+  objectKeys(obj:Object) {
+    return Object.keys(obj);
   }
 
   retrieveDrafts(): void {

@@ -16,6 +16,7 @@ export class ListComponent implements OnInit {
 
   @ViewChild('taskinput') input: any;
   items: any;
+  draftItems: any[] = [];
   item: Item ={};
   listtitle: string = 'shopping list name';
 
@@ -73,9 +74,10 @@ export class ListComponent implements OnInit {
   }
 
   saveDraft(){
-    console.log(this.items);
-    
-    this.dataService.saveDraft(this.listtitle, this.items);
+    this.items.map( (item:any) => {
+      this.draftItems.push(item.name) ;
+    })    
+    this.dataService.saveDraft(this.listtitle, this.draftItems);
   }
 }
 
