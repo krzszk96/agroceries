@@ -5,11 +5,11 @@
   <mat-panel-description>
     <div class="card-list-wrap">
       <ul class="list">
-        <li class="list__item" *ngFor="let k of objectKeys(draft)">
-          <ng-container #test>
-            {{draft[k].name }}
-          </ng-container>
-        </li>
+        <ng-container *ngFor="let k of objectKeys(draft)">
+          <li class="list__item" *ngIf="k != 'key'">
+            {{draft[k] }}
+          </li>
+        </ng-container>
       </ul>
     </div>
 

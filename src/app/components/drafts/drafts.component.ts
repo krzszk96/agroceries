@@ -15,8 +15,6 @@ export class DraftsComponent implements OnInit {
   item: Item ={};
   drafts: any;
 
-  test: any;
-
   constructor(private frauth: AngularFireAuth, private draftsService: DraftsService) { }
 
   ngOnInit(): void {
@@ -39,9 +37,7 @@ export class DraftsComponent implements OnInit {
         )
       )
     ).subscribe(drafts => {
-      console.log(drafts);
       this.drafts = drafts;
-                 
     });
   }
 
