@@ -1,9 +1,12 @@
 <div class="container">
   <mat-card>
     <mat-card-title>
-      <mat-icon class="card-icon" color="primary">fingerprint</mat-icon>
-      Log in
+      <mat-icon class="card-icon" color="primary">shopping_basket</mat-icon>
+      A-groceries
     </mat-card-title>
+    <mat-card-subtitle class="login-subtitle">
+      Log in
+    </mat-card-subtitle>
 
     <form class="signin-form">
       <mat-form-field class="signin-form__full-width" appearance="fill">
@@ -21,7 +24,7 @@
     <div class="signin-form__btns">
       <button mat-raised-button color="primary" (click)="signIn(email.value, password.value)">Log
         in</button>
-      <button mat-raised-button routerLink="/register-user">Sign up</button>
+      <button mat-raised-button routerLink="/register-user">Create account</button>
     </div>
 
   </mat-card>
