@@ -46,6 +46,7 @@
   margin: 0.8rem 1.5rem;
 
   &__save, &__load{
+    position: relative;
     border: none;
     border-radius: 5px;
     padding: 5px 20px;
@@ -55,6 +56,27 @@
     letter-spacing: 1px;
     box-shadow: 0px 0px 2px 0px rgba(183, 183, 183, 1); //later change to correct one and everywhere same
     font-family: Roboto;
+    transition-duration: 0.4s;
+    overflow: hidden;
+  }
+  &__save::after, &__load::after{
+    content: "";
+    border-radius: 5px;
+    background: $primary-color;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s    
+  }
+  &__save:active:after, &__load:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
   }
 }
 
@@ -118,8 +140,16 @@
     padding: 0;
 
     &__item{
+      position: relative;
       font-size: 1rem;
       margin: 5px 0;
+    }
+
+    .close-icon{
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
     }
   }
 }

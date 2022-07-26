@@ -8,7 +8,7 @@
 
 <div class="list-actions">
   <button class="list-actions__save" (click)="saveDraft()">Save as draft</button>
-  <button class="list-actions__load" routerLink="../drafts" (click)="updateMenu(3)">Load draft</button>
+  <button class="list-actions__load" routerLink="../drafts">Load draft</button>
 </div>
 
 <mat-card class="card-list">
@@ -20,10 +20,11 @@
   </div>
   <div class="card-list-wrap">
     <ul class="list">
-      <li class="list__item" *ngFor="let item of items ">
-        <mat-checkbox color="primary" (click)="tickItem(item.key)" [checked]="item.done">
+      <li class="list__item" *ngFor="let item of items ; let i = index">
+        <mat-checkbox color="primary" (click)="tickItem(item.key); clickedIndex = i" [checked]="item.done">
           {{item.name}}
         </mat-checkbox>
+        <mat-icon class="close-icon" *ngIf="clickedIndex === i" (click)="deleteItem(item.key)">close</mat-icon>
       </li>
     </ul>
   </div>

@@ -8,11 +8,14 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
+  status: boolean = false;
 
   constructor(public authService: AuthService){}
 
   signOut(){
     this.authService.signOut();
   }
+
+  
 
 }

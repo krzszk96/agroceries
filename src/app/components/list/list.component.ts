@@ -25,6 +25,9 @@ export class ListComponent implements OnInit {
   itemsticked: number = 0;
   progresswidth: number = 0;
 
+  showclose: boolean = false;
+  clickedIndex: number = 0;
+
   constructor(
     private dataService: DataService, 
     private frauth: AngularFireAuth,
@@ -58,10 +61,11 @@ export class ListComponent implements OnInit {
   }
 
   deleteItem(id:any){
-    console.log("Not yet implemeneted, clicked id: " +id);    
+    this.dataService.deleteItem(id);
   }
 
-  tickItem(id:any){
+  tickItem(id:any){    
+    this.showclose = true;
     let donestate = false;
     for (let item of this.items){
       if(item.key == id) {donestate = item.done;} 
@@ -85,10 +89,7 @@ export class ListComponent implements OnInit {
     this._snackBar.open('Draft saved', '', {
       duration: 2000
     });
-  }
-
-  updateMenu(nr: number){
-    localStorage.setItem('menupos', String(nr));
+    this.draftItems = [];
   }
 }
 

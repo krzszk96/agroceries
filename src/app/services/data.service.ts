@@ -35,6 +35,10 @@ export class DataService {
   updateItem(id:string){
     return this.db.list(`/users/${this.useruid}/items`);
   }
+  
+  deleteItem(id:string){
+    return this.db.list(`/users/${this.useruid}/items/${id}`).remove();
+  }
 
   saveDraft(key:string, items: Item[] ){
     return this.db.object(`/users/${this.useruid}/drafts/${key}`).update(items);

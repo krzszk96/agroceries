@@ -53,7 +53,9 @@
   border-radius: 25px 25px 0px 0px; 
   box-shadow: 0px 0px 2px 0px rgba(183, 183, 183, 1); //later change to correct one and everywhere same
 
-  &__logout{
+  
+
+  &__btn{
     background-color: transparent;
     border: none;
     color: $primary-color;
@@ -61,3 +63,8 @@
     cursor: pointer;
   }
 }
+// .up{
+//   height: 20rem;
+//   align-items: flex-start;
+//   padding-top: 30px;
+// }
