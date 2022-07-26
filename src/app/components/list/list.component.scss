@@ -20,8 +20,7 @@
     position: absolute;
     top: 50%;
     right: 2.5rem;
-    transform: translateY(-50%);
-    
+    transform: translateY(-50%);    
   }
 
   &::placeholder{
@@ -113,6 +112,7 @@
 
     &__item{
       font-size: 1rem;
+      margin: 5px 0;
     }
   }
 }

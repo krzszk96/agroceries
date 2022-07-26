@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 
-import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatInputModule} from '@angular/material/input';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatInputModule,
     MatDividerModule,
     MatToolbarModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatExpansionModule
   ]
 })
 export class MaterialModule { }
