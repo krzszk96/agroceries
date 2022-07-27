@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
-import { Observable } from 'rxjs';
 import { Item } from 'src/app/interfaces/item';
 import { DataService } from 'src/app/services/data.service';
 import { map } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -28,6 +27,8 @@ export class ListComponent implements OnInit {
   showclose: boolean = false;
   clickedIndex: number = 0;
 
+  subscription!: Subscription;
+
   constructor(
     private dataService: DataService, 
     private frauth: AngularFireAuth,
@@ -42,7 +43,7 @@ export class ListComponent implements OnInit {
   }
 
   retrieveItems(): void {
-    this.dataService.getAllItems().snapshotChanges().pipe(
+    this.subscription = this.dataService.getAllItems().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ key: c.payload.key, ...c.payload.val() })
@@ -93,6 +94,10 @@ export class ListComponent implements OnInit {
       duration: 1000
     });
     this.draftItems = [];
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
 

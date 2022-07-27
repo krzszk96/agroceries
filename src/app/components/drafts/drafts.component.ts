@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { map } from 'rxjs';
+import { map, Subscription } from 'rxjs';
 import { Item } from 'src/app/interfaces/item';
 import { DraftsService } from 'src/app/services/drafts.service';
 
@@ -14,6 +14,7 @@ export class DraftsComponent implements OnInit {
   Object = Object;
   item: Item ={};
   drafts: any;
+  subscription!: Subscription;
 
   constructor(private frauth: AngularFireAuth, private draftsService: DraftsService) { }
 
@@ -30,7 +31,7 @@ export class DraftsComponent implements OnInit {
   }
 
   retrieveDrafts(): void {
-    this.draftsService.getAllDrafts().snapshotChanges().pipe(
+    this.subscription = this.draftsService.getAllDrafts().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ key: c.payload.key, ...c.payload.val() })
@@ -39,6 +40,10 @@ export class DraftsComponent implements OnInit {
     ).subscribe(drafts => {
       this.drafts = drafts;
     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }
