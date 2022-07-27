@@ -1,3 +1,4 @@
+<mat-spinner [diameter]="50" *ngIf="!drafts"></mat-spinner>
 <mat-expansion-panel class="card-list" *ngFor="let draft of drafts">
   <mat-expansion-panel-header class="card-list__title">
     {{draft.key}}

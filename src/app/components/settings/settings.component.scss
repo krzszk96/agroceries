@@ -1,0 +1,44 @@
+@import '../../scss/colors';
+
+mat-dialog-title{
+  display: flex;
+  align-items: center;  
+}
+mat-icon{
+  color: $primary-color;
+  margin-bottom: -4px;
+  margin-right: 5px;
+}
+.mat-button-toggle-group {
+  height: 32px;
+  align-items: center;
+}
+.settings-subtitle{
+  font-size: 1.2rem;
+  margin: 20px 0;
+  color: $primary-color;
+}
+.color-btns-wrap{
+  display: flex;
+
+  .color-btn{
+    height: 32px;
+    width: 32px;
+    background-color: $primary-color;
+    margin: 0 5px;
+    border-radius: 5px;
+  }
+  .color-btn:first-child{
+    margin-left: 0;
+  }
+}
+.btn-wrap{
+  display: flex;
+  justify-content: end;
+
+  .close-btn{
+    margin-top: 20px;
+  }
+}
+
+

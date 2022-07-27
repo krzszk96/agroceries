@@ -19,6 +19,7 @@
     <div class="progress__front" [style.width.%]="progresswidth"></div>
   </div>
   <div class="card-list-wrap">
+    <mat-spinner [diameter]="50" *ngIf="!items"></mat-spinner>
     <ul class="list">
       <li class="list__item" *ngFor="let item of items ; let i = index">
         <mat-checkbox color="primary" (click)="tickItem(item.key); clickedIndex = i" [checked]="item.done">

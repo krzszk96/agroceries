@@ -13,11 +13,11 @@
 
 <router-outlet></router-outlet>
 
-<nav class="bottom-nav" [ngClass]="status ? 'up' : 'down'">
-  <button class="bottom-nav__btn">
+<nav class="bottom-nav">
+  <button class="bottom-nav__btn" (click)="openMoreDialog()">
     <mat-icon>more_vert</mat-icon>
   </button>
-  <button class="bottom-nav__btn" (click)="status=!status">
+  <button class="bottom-nav__btn" (click)="openSettingsDialog()">
     <mat-icon>settings</mat-icon>
   </button>
   <button class="bottom-nav__btn" (click)="signOut()">

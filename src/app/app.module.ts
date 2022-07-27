@@ -17,6 +17,8 @@ import { MaterialModule } from './modules/material.module';
 import { RecipesComponent } from './components/recipes/recipes.component';
 import { DraftsComponent } from './components/drafts/drafts.component';
 import { ListComponent } from './components/list/list.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { MoreComponent } from './components/more/more.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { ListComponent } from './components/list/list.component';
     SignUpComponent,
     RecipesComponent,
     DraftsComponent,
-    ListComponent
+    ListComponent,
+    SettingsComponent,
+    MoreComponent
   ],
   imports: [
     BrowserModule,

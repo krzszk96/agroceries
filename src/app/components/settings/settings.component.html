@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>
+  <mat-icon>settings_applications</mat-icon>Settings
+</h1>
+<mat-dialog-content>
+
+  <div class="settings-subtitle">Change Theme</div>
+  <mat-button-toggle-group name="theme" aria-label="Theme style" #themeBtn="matButtonToggleGroup"
+    [value]="selectedTheme" (change)="onThemeChange(themeBtn.value)">
+    <mat-button-toggle value="dark">Dark</mat-button-toggle>
+    <mat-button-toggle value="light">Light</mat-button-toggle>
+  </mat-button-toggle-group>
+
+  <div class="settings-subtitle">Change Colors</div>
+  <div class="color-btns-wrap">
+    <div class="color-btn"></div>
+    <div class="color-btn"></div>
+    <div class="color-btn"></div>
+    <div class="color-btn"></div>
+  </div>
+
+  <div class="settings-subtitle">Change Laguage</div>
+  <mat-button-toggle-group name="language" aria-label="Language" #languageBtn="matButtonToggleGroup"
+    [value]="selectedLanguage" (change)="onLanguageChange(languageBtn.value)">
+    <mat-button-toggle value="pl">PL</mat-button-toggle>
+    <mat-button-toggle value="en">EN</mat-button-toggle>
+  </mat-button-toggle-group>
+
+  <div class="btn-wrap">
+    <button class="close-btn" [mat-dialog-close]="'close'" mat-button cdkFocusInitial>close</button>
+  </div>
+
+</mat-dialog-content>
