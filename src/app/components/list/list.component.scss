@@ -14,11 +14,11 @@ mat-spinner{
 }
 
 .input-helper{
-  margin: 2.5rem 1.5rem;  
+  margin: 2.5rem 1.5rem;
 }
 
 .task-input{
-  width: calc(100% - 1.5rem - 20px);   
+  width: calc(100% - 1.5rem - 20px);
   padding: 15px 20px;
   border: none;
   border-radius: 10px;
@@ -31,7 +31,7 @@ mat-spinner{
     position: absolute;
     top: 50%;
     right: 2.5rem;
-    transform: translateY(-50%);    
+    transform: translateY(-50%);
   }
 
   &::placeholder{
@@ -74,7 +74,7 @@ mat-spinner{
     margin-left: -20px!important;
     margin-top: -120%;
     opacity: 0;
-    transition: all 0.8s    
+    transition: all 0.8s
   }
   &__save:active:after, &__load:active:after {
     padding: 0;

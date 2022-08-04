@@ -20,6 +20,7 @@ import { ListComponent } from './components/list/list.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { MoreComponent } from './components/more/more.component';
 import { FormsModule } from '@angular/forms';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { FormsModule } from '@angular/forms';
     DraftsComponent,
     ListComponent,
     SettingsComponent,
-    MoreComponent
+    MoreComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,

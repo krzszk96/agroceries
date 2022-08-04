@@ -5,6 +5,9 @@ import { map } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent, ConfirmDialogModel } from '../confirmation-dialog/confirmation-dialog.component';
+import { snapshotChanges } from '@angular/fire/compat/database';
 
 @Component({
   selector: 'app-list',
@@ -19,20 +22,19 @@ export class ListComponent implements OnInit {
   draftItems: any[] = [];
   item: Item ={};
   listtitle: string = 'shopping list name';
-
+  result: string = '';
   itemscount: number = 0;
   itemsticked: number = 0;
   progresswidth: number = 0;
-
   showclose: boolean = false;
   clickedIndex: number = 0;
-
   subscription!: Subscription;
 
   constructor(
     private listService: ListService,
     private frauth: AngularFireAuth,
-    private _snackBar: MatSnackBar) {}
+    private _snackBar: MatSnackBar,
+    public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.frauth.onAuthStateChanged((user:any) => {
@@ -86,12 +88,17 @@ export class ListComponent implements OnInit {
   }
 
   saveDraft(){
-
     this.items.map( (item:any) => {
       this.draftItems.push({
         key:item.key,
         name: item.name}) ;
     })
+
+    // TODO: check if draft with given name already exists.
+    if(this.listService.checkIfDraftAlreadyExists(this.listtitle)) {
+      this.confirmDialog(this.listtitle);
+      if(this.result){console.log('yes');}
+    }
     this.draftItems.forEach( item =>{
       this.listService.saveDraft(this.listtitle, item);
     });
@@ -99,7 +106,25 @@ export class ListComponent implements OnInit {
     this._snackBar.open('Draft saved', '', {
       duration: 1000
     });
+
     this.draftItems = [];
+    this.result = '';
+  }
+
+  confirmDialog(listname: string): void {
+    const message = `Draft with name: ${listname} already exists, do you want to overwrite? `;
+
+    const dialogData = new ConfirmDialogModel("Draft already exists!", message);
+
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      panelClass: 'custom-dialog-container',
+      maxWidth: "350px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      this.result = dialogResult;
+    });
   }
 
   ngOnDestroy() {

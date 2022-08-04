@@ -3,7 +3,7 @@
     <input type="text" name="taskinput" id="taskinput" class="task-input" placeholder="add new item..." #taskinput
       required>
   </div>
-  <mat-icon class="task-input__icon" (click)="addItem(taskinput.value)">add</mat-icon>
+  <mat-icon class="task-input__icon" (click)="addItem(taskinput.value); this.taskinput.value = '' ">add</mat-icon>
 </div>
 
 <div class="list-actions">

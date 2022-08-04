@@ -41,6 +41,10 @@ export class ListService {
     return this.db.list(`/users/${this.useruid}/items/${id}`).remove();
   }
 
+  checkIfDraftAlreadyExists(key:string){
+    return this.db.list(`/users/${this.useruid}/drafts/${key}`);
+  }
+
   saveDraft(key:string, item: DraftItem ){
     return this.db.list(`/users/${this.useruid}/drafts/${key}`).set(item.key, {name: item.name});
   }
