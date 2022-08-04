@@ -1,14 +1,35 @@
+<div class="input-wrap">
+  <div class="input-helper">
+    <input type="text" name="draftinput" id="draftinput" class="draft-input" placeholder="add new draft..." #draftinput
+      required>
+  </div>
+  <mat-icon class="draft-input__icon" (click)="addDraft(draftinput.value); this.draftinput.value =''">add</mat-icon>
+</div>
+
 <mat-spinner [diameter]="50" *ngIf="!drafts"></mat-spinner>
-<mat-expansion-panel class="card-list" *ngFor="let draft of drafts">
+<mat-expansion-panel class="card-list" *ngFor="let draft of drafts; trackBy: identifyer">
   <mat-expansion-panel-header class="card-list__title">
     {{draft.key}}
   </mat-expansion-panel-header>
+
+  <div class="input-wrap">
+    <div class="inputitem-helper">
+      <input type="text" name="draftiteminput" id="draftiteminput" class="draft-input item-input"
+        placeholder="add new item..." #draftiteminput required>
+    </div>
+    <mat-icon class="draft-input__icon item-input"
+      (click)="addItem(draftiteminput.value, draft.key); this.draftiteminput.value ='' ">add</mat-icon>
+  </div>
+
   <mat-panel-description>
     <div class="card-list-wrap">
       <ul class="list">
-        <ng-container *ngFor="let k of objectKeys(draft)">
-          <li class="list__item" *ngIf="k != 'key'">
-            {{draft[k] }}
+        <ng-container *ngFor="let k of objectKeys(draft); let i = index">
+          <li class="list__item" *ngIf="k != 'key'" (click)="clickedIndex = i">
+            {{draft[k].name }}
+            <mat-icon class="close-icon" *ngIf="clickedIndex === i"
+              (click)="deleteItem(objectKeys(draft)[1], draft.key)">close
+            </mat-icon>
           </li>
         </ng-container>
       </ul>

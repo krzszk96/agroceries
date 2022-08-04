@@ -19,6 +19,7 @@ import { DraftsComponent } from './components/drafts/drafts.component';
 import { ListComponent } from './components/list/list.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { MoreComponent } from './components/more/more.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MoreComponent } from './components/more/more.component';
     AppRoutingModule,
     FirebaseModule,
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

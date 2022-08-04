@@ -4,13 +4,24 @@
   display:block;
   margin-bottom: 100px;
 }
+
 mat-spinner{
   font-size: 1rem;
   margin: 2rem;
 }
+
 mat-panel-description{
   align-items: flex-start;
 }
+
+.card-list-wrap{
+  margin-top: 1rem;
+}
+
+.card-list-wrap, .list{
+  width: 100%;
+}
+
 .card-list{
   margin: 1rem 1.5rem 0 1.5rem;
   border: none;
@@ -40,13 +51,23 @@ mat-panel-description{
     margin: 0;
 
     &__item{
+      position: relative;
+      width: 100%;
       font-size: 1rem;
       color: $text-color;
       padding: 5px;
       margin-left: 15px;
     }
+
     &__item::marker{
       color: $primary-color;
+    }
+
+    .close-icon{
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
     }
   }
 }
@@ -75,3 +96,46 @@ mat-panel-description{
     font-family: Roboto;
   }
 }
+
+
+.input-wrap{
+  position: relative;
+}
+
+.input-helper{
+  margin: 2.5rem 1.5rem;
+}
+.inputitem-helper{
+  margin: 0.5rem 0;
+}
+
+.draft-input{
+  width: calc(100% - 1.5rem - 20px);
+  padding: 15px 20px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 0px 2px 0px rgba(183, 183, 183, 1); //later change to correct one and everywhere same
+  background-color: $secondary-color;
+  font-size: 1.1rem;
+  font-weight: 400;
+
+  &__icon{
+    position: absolute;
+    top: 50%;
+    right: 2.5rem;
+    transform: translateY(-50%);
+  }
+
+  &::placeholder{
+    font-size: 1.1rem;
+    font-weight: 400;
+  }
+
+  &:focus,&:active{
+    outline: none;
+  }
+}
+.item-input{
+  right: 1rem;
+}
+

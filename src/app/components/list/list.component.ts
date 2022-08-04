@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Item } from 'src/app/interfaces/item';
-import { DataService } from 'src/app/services/data.service';
+import { ListService } from 'src/app/components/list/list.service';
 import { map } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -30,7 +30,7 @@ export class ListComponent implements OnInit {
   subscription!: Subscription;
 
   constructor(
-    private dataService: DataService, 
+    private listService: ListService,
     private frauth: AngularFireAuth,
     private _snackBar: MatSnackBar) {}
 
@@ -38,58 +38,64 @@ export class ListComponent implements OnInit {
     this.frauth.onAuthStateChanged((user:any) => {
       if(user){
         this.retrieveItems();
-      }    
-    });      
+      }
+    });
   }
 
   retrieveItems(): void {
-    this.subscription = this.dataService.getAllItems().snapshotChanges().pipe(
+    this.subscription = this.listService.getAllItems().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ key: c.payload.key, ...c.payload.val() })
         )
       )
     ).subscribe(items => {
-      this.items = items;      
-      this.itemscount = this.items.length;   
-      this.checkHowManyItemsTicked(this.items);      
+      this.items = items;
+      this.itemscount = this.items.length;
+      this.checkHowManyItemsTicked(this.items);
     });
   }
-  
+
   addItem(item: string){
-    this.dataService.addItem({name: item, done: false});
+    this.listService.addItem({name: item, done: false});
     this.input.nativeElement.value = '';
   }
 
   deleteItem(id:any){
-    this.dataService.deleteItem(id);
+    this.listService.deleteItem(id);
     this._snackBar.open('Item removed', '', {
       duration: 1000
     });
   }
 
-  tickItem(id:any){    
+  tickItem(id:any){
     this.showclose = true;
     let donestate = false;
     for (let item of this.items){
-      if(item.key == id) {donestate = item.done;} 
-    }        
-    this.dataService.updateItem(id).update(id, {done: !donestate});
+      if(item.key == id) {donestate = item.done;}
+    }
+    this.listService.updateItem(id).update(id, {done: !donestate});
   }
 
   checkHowManyItemsTicked(items: Item[]){
     this.itemsticked = 0;
-    for (let item of items){      
-      if(item.done == true) {this.itemsticked++;} 
-    } 
-    this.progresswidth = Math.round((this.itemsticked / this.itemscount) * 100);        
+    for (let item of items){
+      if(item.done == true) {this.itemsticked++;}
+    }
+    this.progresswidth = Math.round((this.itemsticked / this.itemscount) * 100);
   }
 
   saveDraft(){
+
     this.items.map( (item:any) => {
-      this.draftItems.push(item.name) ;
-    })        
-    this.dataService.saveDraft(this.listtitle, this.draftItems);
+      this.draftItems.push({
+        key:item.key,
+        name: item.name}) ;
+    })
+    this.draftItems.forEach( item =>{
+      this.listService.saveDraft(this.listtitle, item);
+    });
+
     this._snackBar.open('Draft saved', '', {
       duration: 1000
     });
