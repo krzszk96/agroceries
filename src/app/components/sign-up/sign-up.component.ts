@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -6,11 +7,15 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent {
 
-  constructor(public authService: AuthService) { }
+  myGroup: FormGroup;
 
-  ngOnInit(): void {
+  constructor(public authService: AuthService) {
+    this.myGroup = new FormGroup({
+      email: new FormControl(),
+      password: new FormControl()
+    });
   }
 
   signUp(email:string, password:string):void {

@@ -19,7 +19,7 @@ import { DraftsComponent } from './components/drafts/drafts.component';
 import { ListComponent } from './components/list/list.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { MoreComponent } from './components/more/more.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
@@ -41,7 +41,8 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     FirebaseModule,
     MaterialModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

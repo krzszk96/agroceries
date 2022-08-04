@@ -42,6 +42,8 @@ export class DraftsComponent implements OnInit {
         )
       )
     ).subscribe(drafts => {
+      console.log(drafts.length);
+
       this.drafts = drafts;
     });
   }
