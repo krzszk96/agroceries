@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { map, Subscription } from 'rxjs';
+import { first, map, merge, Observable, Subscription } from 'rxjs';
 import { Item } from 'src/app/interfaces/item';
 import { DraftsService } from 'src/app/components/drafts/drafts.service';
 import { DraftItem } from 'src/app/interfaces/draftitem';
+import { ListService } from '../list/list.service';
 
 @Component({
   selector: 'app-drafts',
@@ -14,11 +15,15 @@ export class DraftsComponent implements OnInit {
 
   Object = Object;
   item: Item ={};
+  items: any;
   drafts: any;
   subscription!: Subscription;
   clickedIndex: number = 0;
 
-  constructor(private frauth: AngularFireAuth, private draftsService: DraftsService) { }
+  constructor(
+    private frauth: AngularFireAuth,
+    private draftsService: DraftsService,
+    private listService: ListService) { }
 
   ngOnInit(): void {
     this.frauth.onAuthStateChanged((user:any) => {
@@ -60,6 +65,11 @@ export class DraftsComponent implements OnInit {
 
   deleteDraft(draft: string){
     this.draftsService.deleteDraft(draft);
+  }
+
+  loadDraft(draft: string){
+    let draft$ = this.draftsService.loadDraft;
+    let items$ = this.listService.getAllItems;
   }
 
   ngOnDestroy() {
