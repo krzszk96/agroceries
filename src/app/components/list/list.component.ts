@@ -1,13 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Item } from 'src/app/interfaces/item';
 import { ListService } from 'src/app/components/list/list.service';
-import { map } from 'rxjs/operators';
+import { first, map, take } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Subscription } from 'rxjs';
+import { pipe, Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent, ConfirmDialogModel } from '../confirmation-dialog/confirmation-dialog.component';
-import { snapshotChanges } from '@angular/fire/compat/database';
 
 @Component({
   selector: 'app-list',
@@ -22,7 +21,6 @@ export class ListComponent implements OnInit {
   draftItems: any[] = [];
   item: Item ={};
   listtitle: string = 'shopping list name';
-  result: string = '';
   itemscount: number = 0;
   itemsticked: number = 0;
   progresswidth: number = 0;
@@ -88,31 +86,31 @@ export class ListComponent implements OnInit {
   }
 
   saveDraft(){
+    this.draftItems = [];
     this.items.map( (item:any) => {
       this.draftItems.push({
         key:item.key,
         name: item.name}) ;
     })
 
-    // TODO: check if draft with given name already exists.
-    if(this.listService.checkIfDraftAlreadyExists(this.listtitle)) {
-      this.confirmDialog(this.listtitle);
-      if(this.result){console.log('yes');}
-    }
-    this.draftItems.forEach( item =>{
-      this.listService.saveDraft(this.listtitle, item);
-    });
-
-    this._snackBar.open('Draft saved', '', {
-      duration: 1000
-    });
-
-    this.draftItems = [];
-    this.result = '';
+    this.listService.checkIfDraftAlreadyExists(this.listtitle).snapshotChanges().pipe(first()).subscribe(
+      event => {
+        if(event.length == 0) {
+          this.draftItems.forEach( (item:any) =>{
+            this.listService.saveDraft(this.listtitle, item);
+          });
+          this._snackBar.open('Draft saved', '', {
+            duration: 1000
+          });
+        } else {
+          this.confirmDialog(this.listtitle);
+        }
+      }
+    );
   }
 
   confirmDialog(listname: string): void {
-    const message = `Draft with name: ${listname} already exists, do you want to overwrite? `;
+    const message = `Draft with name: ${listname} already exists, do you want to add items to this draft? `;
 
     const dialogData = new ConfirmDialogModel("Draft already exists!", message);
 
@@ -123,7 +121,19 @@ export class ListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(dialogResult => {
-      this.result = dialogResult;
+      if(dialogResult){
+        this.draftItems.forEach( (item:any) =>{
+          this.listService.saveDraft(this.listtitle, item);
+        });
+        this._snackBar.open('Draft saved', '', {
+          duration: 1000
+        });
+      }
+      else{
+        this._snackBar.open('Draft NOT saved', '', {
+          duration: 1500
+        });
+      }
     });
   }
 

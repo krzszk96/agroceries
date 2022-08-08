@@ -57,6 +57,8 @@ export class DraftsComponent implements OnInit {
   }
 
   deleteItem(id: string, draft: string){
+    console.log(id);
+
     this.draftsService.deleteItem(id, draft);
   }
 

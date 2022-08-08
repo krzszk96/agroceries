@@ -28,7 +28,7 @@
           <li class="list__item" *ngIf="k != 'key'" (click)="clickedIndex = i">
             {{draft[k].name }}
             <mat-icon class="close-icon" *ngIf="clickedIndex === i"
-              (click)="deleteItem(objectKeys(draft)[1], draft.key)">close
+              (click)="deleteItem(objectKeys(draft)[i], draft.key)">close
             </mat-icon>
           </li>
         </ng-container>
