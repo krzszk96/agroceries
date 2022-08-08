@@ -33,4 +33,8 @@ export class DraftsService {
     return this.db.list(`/users/${this.useruid}/drafts/${draft}/${id}`).remove();
   }
 
+  deleteDraft(draft: string){
+    return this.db.list(`/users/${this.useruid}/drafts/${draft}`).remove();
+  }
+
 }

@@ -42,8 +42,6 @@ export class DraftsComponent implements OnInit {
         )
       )
     ).subscribe(drafts => {
-      console.log(drafts.length);
-
       this.drafts = drafts;
     });
   }
@@ -57,9 +55,11 @@ export class DraftsComponent implements OnInit {
   }
 
   deleteItem(id: string, draft: string){
-    console.log(id);
-
     this.draftsService.deleteItem(id, draft);
+  }
+
+  deleteDraft(draft: string){
+    this.draftsService.deleteDraft(draft);
   }
 
   ngOnDestroy() {

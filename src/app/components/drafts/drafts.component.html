@@ -37,7 +37,7 @@
 
     <div class="draft-actions">
       <button class="draft-actions__load">Load draft</button>
-      <button class="draft-actions__add">Add to current list</button>
+      <button class="draft-actions__add" (click)="deleteDraft(draft.key)">Delete draft</button>
     </div>
   </mat-panel-description>
 </mat-expansion-panel>
