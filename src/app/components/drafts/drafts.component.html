@@ -9,6 +9,7 @@
 <mat-spinner [diameter]="50" *ngIf="!drafts"></mat-spinner>
 <mat-expansion-panel class="card-list" *ngFor="let draft of drafts; trackBy: identifyer">
   <mat-expansion-panel-header class="card-list__title">
+    <mat-icon color="primary" class="card-list__icon">file_copy</mat-icon>
     {{draft.key}}
   </mat-expansion-panel-header>
 

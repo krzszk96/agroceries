@@ -1,1 +1,50 @@
-<p>Feature coming soon!</p>
+<div class="input-wrap">
+  <div class="input-helper">
+    <input type="text" name="recipeinput" id="recipeinput" class="recipe-input input-top"
+      placeholder="add new recipe..." #recipeinput required>
+    <input type="text" name="recipeimageurl" id="recipeimageurl" class="recipeimageurl-input input-bottom"
+      placeholder="paste image url..." #recipeimageurl required>
+  </div>
+  <mat-icon class="recipe-input__icontop"
+    (click)="addRecipe(recipeinput.value, recipeimageurl.value);this.recipeinput.value =''; this.recipeimageurl.value ='' ">
+    add</mat-icon>
+</div>
+
+<mat-spinner [diameter]="50" *ngIf="!recipes"></mat-spinner>
+<mat-expansion-panel class="card-list" *ngFor="let recipe of recipes; trackBy: identifyer">
+  <mat-expansion-panel-header class="card-list__title">
+    <mat-icon color="primary" class="card-list__icon">fastfood</mat-icon>
+    {{recipe.key}}
+  </mat-expansion-panel-header>
+
+  <div class="img-wrap">
+    <img class="recipe-img" src="{{recipe.url}}" alt="recipe img">
+  </div>
+
+  <div class="input-wrap">
+    <div class="inputitem-helper">
+      <input type="text" name="recipeiteminput" id="recipeiteminput" class="recipe-input item-input"
+        placeholder="add new item..." #recipeiteminput required>
+    </div>
+    <mat-icon class="recipe-input__icon item-input" (click)="this.recipeiteminput.value ='' ">add</mat-icon>
+  </div>
+
+  <mat-panel-description>
+    <div class="card-list-wrap">
+      <ul class="list">
+        <ng-container *ngFor="let i = index">
+          <li class="list__item" *ngIf="" (click)="clickedIndex = i">
+            Ingredient
+            <mat-icon class="close-icon" *ngIf="clickedIndex === i">close
+            </mat-icon>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+
+    <div class="recipe-actions">
+      <button mat-raised-button color="primary">Add to list</button>
+      <button mat-raised-button color="primary">Delete recipe</button>
+    </div>
+  </mat-panel-description>
+</mat-expansion-panel>

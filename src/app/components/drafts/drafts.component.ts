@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { first, map, merge, Observable, Subscription } from 'rxjs';
+import { map, Subscription } from 'rxjs';
 import { Item } from 'src/app/interfaces/item';
 import { DraftsService } from 'src/app/components/drafts/drafts.service';
-import { DraftItem } from 'src/app/interfaces/draftitem';
 import { ListService } from '../list/list.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 

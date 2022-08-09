@@ -12,7 +12,10 @@
 </div>
 
 <mat-card class="card-list">
-  <div class="card-list__title" contenteditable="true" #x (input)="listtitle = x.innerText">{{listtitle}}</div>
+  <div class="card-list__title" contenteditable="true" #x (input)="listtitle = x.innerText">
+    <mat-icon color="primary" class="card-list__icon">shopping_cart</mat-icon>
+    {{listtitle}}
+  </div>
   <div class="card-list__progress-text">cart {{itemsticked}}/{{itemscount}}</div>
   <div class="progress">
     <div class="progress__back"></div>

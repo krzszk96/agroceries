@@ -64,19 +64,14 @@ mat-spinner{
   &__title{
     position: relative;
     font-size: 1.1rem;
-    margin-left: 15px;
+    display: flex;
+    align-items: center;
   }
-  &__title::before{
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: -15px;
-    transform: translateY(-50%);
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background-color: $primary-color;
+
+  &__icon{
+    margin-right: 10px;
   }
+
   &__progress-text{
     font-size: 0.7rem;
     color: $primary-color;
