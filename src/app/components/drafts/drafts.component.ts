@@ -5,6 +5,7 @@ import { Item } from 'src/app/interfaces/item';
 import { DraftsService } from 'src/app/components/drafts/drafts.service';
 import { DraftItem } from 'src/app/interfaces/draftitem';
 import { ListService } from '../list/list.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-drafts',
@@ -17,18 +18,21 @@ export class DraftsComponent implements OnInit {
   item: Item ={};
   items: any;
   drafts: any;
+  draft: any;
   subscription!: Subscription;
   clickedIndex: number = 0;
 
   constructor(
     private frauth: AngularFireAuth,
     private draftsService: DraftsService,
-    private listService: ListService) { }
+    private listService: ListService,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.frauth.onAuthStateChanged((user:any) => {
       if(user){
         this.retrieveDrafts();
+        this.getItemsfromList();
       }
     });
   }
@@ -51,6 +55,18 @@ export class DraftsComponent implements OnInit {
     });
   }
 
+  getItemsfromList(): void {
+    this.subscription = this.listService.getAllItems().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(items => {
+      this.items = items;
+    });
+  }
+
   addDraft(draft: string){
     this.draftsService.addDraft(draft);
   }
@@ -68,8 +84,36 @@ export class DraftsComponent implements OnInit {
   }
 
   loadDraft(draft: string){
-    let draft$ = this.draftsService.loadDraft;
-    let items$ = this.listService.getAllItems;
+    this.draftsService.loadDraft(draft).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe( draft => {
+      const uniqueitem = this.checkForDuplicates(draft,this.items);
+
+      uniqueitem.forEach(item =>{
+        this.draftsService.draftItemstoList(item);
+      })
+      this._snackBar.open('Draft loaded', '', {
+        duration: 1000
+      });
+    })
+  }
+
+  checkForDuplicates(array1:any, array2:any){
+    let uniqueitems: any[] = [];
+    let exists: boolean = false;
+
+    for(let i=0; i<array1.length; i++){
+      for(let j=0; j<array2.length; j++){
+          if(array1[i].name == array2[j].name) exists = true
+      }
+      if(!exists) uniqueitems.push(array1[i]);
+      exists = false
+    }
+    return uniqueitems;
   }
 
   ngOnDestroy() {

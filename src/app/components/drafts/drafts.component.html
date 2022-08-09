@@ -36,8 +36,9 @@
     </div>
 
     <div class="draft-actions">
-      <button class="draft-actions__load">Load draft</button>
-      <button class="draft-actions__add" (click)="deleteDraft(draft.key)">Delete draft</button>
+      <button mat-raised-button color="primary" (click)="loadDraft(draft.key)">Load
+        draft</button>
+      <button mat-raised-button color="primary" (click)="deleteDraft(draft.key)">Delete draft</button>
     </div>
   </mat-panel-description>
 </mat-expansion-panel>

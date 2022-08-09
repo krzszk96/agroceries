@@ -37,8 +37,12 @@ export class DraftsService {
     return this.db.list(`/users/${this.useruid}/drafts/${draft}`).remove();
   }
 
-  loadDraft(draft:String){
+  loadDraft(draft:String):AngularFireList<any>{
     return this.db.list(`/users/${this.useruid}/drafts/${draft}`);
+  }
+
+  draftItemstoList(item:any){
+    return this.db.list(`/users/${this.useruid}/items`).set(item.key, {name: item.name, done: false});
   }
 
 }

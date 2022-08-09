@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { Item } from 'src/app/interfaces/item';
 import { ListService } from 'src/app/components/list/list.service';
 import { first, map, take } from 'rxjs/operators';
@@ -130,7 +130,7 @@ export class ListComponent implements OnInit {
         });
       }
       else{
-        this._snackBar.open('Draft NOT saved', '', {
+        this._snackBar.open('Draft was NOT saved', '', {
           duration: 1500
         });
       }

@@ -82,21 +82,7 @@ mat-panel-description{
   justify-content: space-between;
   margin-top: 2rem;
   width: 100%;
-
-  &__add, &__load{
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    font-weight: 600;
-    color: $primary-color;
-    background-color: $secondary-color;
-    letter-spacing: 1px;
-    font-size: 0.8rem;
-    box-shadow: 0px 0px 2px 0px rgba(183, 183, 183, 1); //later change to correct one and everywhere same
-    font-family: Roboto;
-  }
 }
-
 
 .input-wrap{
   position: relative;
